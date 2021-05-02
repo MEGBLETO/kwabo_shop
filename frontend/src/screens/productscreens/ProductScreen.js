@@ -32,6 +32,42 @@ const product = products.find(p => p._id === match.params.id )
            </ListGroup.Item>
          </ListGroup>
      </Col>
+     <Col md={3}>
+        <Card>
+          <ListGroup> 
+            <ListGroupItem>
+              <Row>
+                <Col>
+                Price:
+                </Col>
+                <Col>
+                <strong>${product.price}</strong>
+                </Col>
+                </Row>
+            </ListGroupItem>
+            <ListGroupItem>
+              <Row>
+                <Col>
+                Status:
+                </Col>
+                <Col>
+                <strong>{product.countInStock > 0 ? 'In Stock' : 'Not available at the moment'}</strong>
+                </Col>
+                </Row>
+            </ListGroupItem>
+          </ListGroup>
+
+          <ListGroup>
+            <ListGroup.Item>
+              <Row>
+                <Col>
+                <Button className="btn-block" type="button" disabled={product.countInStock === 0}>Go to cart</Button>
+                </Col>
+              </Row>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+     </Col>
    </Row>
     </>
   )
