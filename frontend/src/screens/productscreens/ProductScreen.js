@@ -23,7 +23,7 @@ const getProducts = async() =>{
 
 useEffect(() =>{
   getProducts()
-}, [])
+}, [match])
 
 
   return (
