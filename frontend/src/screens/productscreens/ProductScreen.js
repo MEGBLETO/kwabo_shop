@@ -1,13 +1,30 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import{Row, Col, Image, ListGroup , Card , Button, ListGroupItem} from 'react-bootstrap'
 import Rating from '../../components/Rating'
-import products from '../../products' 
+import axios from 'axios'
 import {Link} from 'react-router-dom'
-import Product from '../../components/Product'
+//import Product from '../../components/Product'
 
 const ProductScreen = ({match}) => {
 
-const product = products.find(p => p._id === match.params.id )
+
+  const [product , setProduct] = useState([]) 
+
+
+
+const getProducts = async() =>{
+  const req = await axios.get(`http://localhost:5000/api/products/${match.params.id}`)
+   const data = await req.data;
+   console.log(data)
+   setProduct(data)
+}
+
+
+
+useEffect(() =>{
+  getProducts()
+}, [])
+
 
   return (
     <>
@@ -67,7 +84,7 @@ const product = products.find(p => p._id === match.params.id )
             </ListGroup.Item>
           </ListGroup>
         </Card>
-     </Col>
+  </Col>
    </Row>
     </>
   )
